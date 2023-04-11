@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome TV</title>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- <link rel="stylesheet" href="./css/index.css" /> -->
+  </head>
+
+  <body>
+    <div id="bg">
+      <div id="txt">
+        <h1 class="welcome-txt">Welcome!</h1>
+        <h1 id="nickname" class="nickname-txt"></h1>
+        <h1 id="locale" class="nickname-txt"></h1>
+      </div>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const nickname = urlParams.get("nickname");
+      document.getElementById("nickname").innerText = "nickname: " + nickname;
+      console.log("nickname", nickname);
+
+      const locale = urlParams.get("locale");
+      document.getElementById("locale").innerText = "locale: " + locale;
+      console.log("locale", locale);
+
+      // Back key 처리
+      function exit() {
+        window.close();
+      }
+
+      function handleKeyDown(e) {
+        if (e.key === "GoBack" || e.key === "Escape" || e.key === "Backspace") {
+          e.preventDefault();
+          exit();
+        }
+      }
+
+      window.addEventListener("keydown", (e) => {
+        console.log("keydown ", e);
+        handleKeyDown(e);
+      });
+
+      // 5초후 자동종료
+      // setTimeout(() => {
+      //   console.log("auto close..!");
+      //   exit();
+      // }, 5000);
+
+    </script>
+  </body>
+</html>
