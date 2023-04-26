@@ -22,7 +22,15 @@
 
     <script>
       const urlParams = new URLSearchParams(window.location.search);
-      const nickname = urlParams.get("nickname");
+      let nickname = urlParams.get("nickname");
+      if (nickname) {
+        nickname = decodeURIComponent(
+          nickname.replace(/&#(\d+);/g, function (match, dec) {
+            return String.fromCharCode(dec);
+          })
+        );
+      }
+
       document.getElementById("nickname").innerText = "nickname: " + nickname;
       console.log("nickname", nickname);
 
